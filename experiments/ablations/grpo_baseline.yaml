@@ -1,0 +1,11 @@
+name: grpo_baseline
+description: Baseline GRPO ablation against SFT and DPO
+base_config: configs/base.yaml
+methods:
+  - sft
+  - dpo
+  - grpo
+sweeps:
+  learning_rate: [1.0e-5, 2.0e-5]
+  num_generations: [2, 4]
+  kl_coef: [0.02, 0.04]

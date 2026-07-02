@@ -1,0 +1,46 @@
+# Colab-optimized settings (T4 15GB). Merge with base.yaml in the notebook.
+project_name: nemotron-posttraining-lab-colab
+seed: 42
+output_dir: outputs
+
+model:
+  name: Qwen/Qwen2.5-0.5B-Instruct
+  trust_remote_code: false
+  torch_dtype: float16
+  use_lora: true
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+
+data:
+  dataset_name: gsm8k
+  dataset_config: main
+  train_split: train
+  eval_split: test
+  max_train_samples: 256
+  max_eval_samples: 64
+  processed_dir: data/processed
+
+training:
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 8
+  learning_rate: 2.0e-5
+  num_train_epochs: 1
+  max_seq_length: 512
+  logging_steps: 5
+  save_steps: 50
+  eval_steps: 50
+  bf16: false
+  fp16: true
+  num_generations: 2
+  max_completion_length: 128
+  temperature: 0.7
+  beta: 0.1
+
+wandb:
+  enabled: false
+  project: nemotron-posttraining-lab-colab
+
+grpo:
+  kl_coef: 0.04
+  clip_range: 0.2

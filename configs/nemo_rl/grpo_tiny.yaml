@@ -1,0 +1,40 @@
+# Template config for NVIDIA NeMo-RL (run on Linux + multi-GPU cluster)
+# See docs/NEMO_RL_SETUP.md for full setup.
+#
+# This file documents the production path aligned with Nemotron-3-Nano recipes.
+# Local development uses TRL (scripts/train_grpo.py). NeMo-RL is for scale reproduction.
+
+run_name: nemotron_nano_grpo_tiny
+algorithm: grpo
+
+policy_model: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8
+# For tiny repro, swap to: Qwen/Qwen2.5-1.5B-Instruct
+
+data:
+  train_jsonl: data/processed/rl_train.jsonl
+  validation_jsonl: data/processed/rl_val.jsonl
+
+environments:
+  - math_verifiable
+  - code_verifiable
+
+grpo:
+  num_rollouts: 8
+  clip_range: 0.2
+  kl_coef: 0.04
+  learning_rate: 1.0e-6
+
+generation:
+  backend: vllm
+  temperature: 0.7
+  max_new_tokens: 512
+
+training:
+  backend: fsdp2
+  num_nodes: 1
+  gpus_per_node: 8
+
+logging:
+  track_kl: true
+  track_reward_variance: true
+  track_response_length: true

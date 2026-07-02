@@ -1,0 +1,5 @@
+method: dpo
+training:
+  num_train_epochs: 1
+  learning_rate: 5.0e-6
+  beta: 0.1

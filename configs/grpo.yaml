@@ -1,0 +1,11 @@
+method: grpo
+training:
+  num_train_epochs: 1
+  learning_rate: 1.0e-5
+  num_generations: 4
+  max_completion_length: 256
+  temperature: 0.7
+
+grpo:
+  kl_coef: 0.04
+  clip_range: 0.2
