@@ -13,7 +13,7 @@ model:
   lora_dropout: 0.05
 
 data:
-  dataset_name: gsm8k
+  dataset_name: openai/gsm8k
   dataset_config: main
   train_split: train
   eval_split: test

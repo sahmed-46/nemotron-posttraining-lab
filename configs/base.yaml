@@ -13,7 +13,7 @@ model:
 
 data:
   # Primary: GSM8K for local dev. Switch to nvidia/Nemotron-3-Nano-RL-Training-Blend on GPU cluster.
-  dataset_name: gsm8k
+  dataset_name: openai/gsm8k
   dataset_config: main
   train_split: train
   eval_split: test

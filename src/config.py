@@ -22,7 +22,7 @@ class ModelConfig:
 
 @dataclass
 class DataConfig:
-    dataset_name: str = "gsm8k"
+    dataset_name: str = "openai/gsm8k"
     dataset_config: str = "main"
     train_split: str = "train"
     eval_split: str = "test"

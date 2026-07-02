@@ -11,8 +11,13 @@ from src.config import DataConfig
 
 def load_raw_dataset(cfg: DataConfig) -> dict[str, Dataset]:
     """Load Hugging Face dataset splits."""
-    kwargs: dict[str, Any] = {"path": cfg.dataset_name}
-    if cfg.dataset_config:
+    path = cfg.dataset_name
+    # GSM8K lives under openai/gsm8k on Hugging Face (not bare 'gsm8k').
+    if path == "gsm8k":
+        path = "openai/gsm8k"
+
+    kwargs: dict[str, Any] = {"path": path}
+    if cfg.dataset_config and str(cfg.dataset_config).lower() not in ("", "none", "null"):
         kwargs["name"] = cfg.dataset_config
 
     ds = load_dataset(**kwargs)
