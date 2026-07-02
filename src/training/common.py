@@ -32,7 +32,7 @@ def load_model_and_tokenizer(cfg: ExperimentConfig):
     model = AutoModelForCausalLM.from_pretrained(
         cfg.model.name,
         trust_remote_code=cfg.model.trust_remote_code,
-        torch_dtype=dtype,
+        dtype=dtype,
         device_map="auto",
     )
 

@@ -65,6 +65,24 @@ Set `RUN_GRPO = False` in the notebook if you run out of memory — SFT-only sti
 - GPU not always available — retry later or use Colab Pro
 - Save to Drive after each stage
 
+## Troubleshooting
+
+### `torchao` / `peft` ImportError on SFT
+
+Colab may ship an incompatible `torchao` version. Before training, run:
+
+```python
+!pip uninstall -y torchao
+```
+
+Or use the project helper:
+
+```python
+!python scripts/colab_setup.py
+```
+
+Then rerun `train_sft.py`.
+
 ## 6. NVIDIA NeMo-RL Colab (scale path)
 
 For the production Nemotron stack, also try NVIDIA’s official NeMo-RL Colab linked in their README:
